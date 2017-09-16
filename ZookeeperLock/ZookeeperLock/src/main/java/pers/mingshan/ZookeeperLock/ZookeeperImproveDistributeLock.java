@@ -69,7 +69,7 @@ public class ZookeeperImproveDistributeLock implements Lock{
             public void handleDataChange(String dataPath, Object data) throws Exception {
             }
         };
-        
+
         // 此时只需给前面的节点的添加wathcher即可
         zkClient.subscribeDataChanges(this.beforePath, listener);
 
@@ -90,7 +90,8 @@ public class ZookeeperImproveDistributeLock implements Lock{
     public boolean tryLock() {
         // 判断当前节点是否存在
         if (this.selfPath == null || this.selfPath.length() == 0) {
-            // 在当前节点下创建临时顺序节点，例如0000000034
+            // 在当前节点下创建临时顺序节点，例如0000000034,
+            // 生成的节点应为 /lock/0000000034
             this.selfPath = this.zkClient.createEphemeralSequential(LOCK_ROOT_NODE + "/", data);
             logger.info("当前节点为 ————> " + this.selfPath);
         }

@@ -19,7 +19,7 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
     private static final String GROUP_PATH = "/disLocks";
     private static final String SUB_PATH = "/disLocks/sub";
     private static final String CONNECTION_STRING = "localhost:2181";
-    
+
     private static final int THREAD_NUM = 10; 
     //确保连接zk成功
     private CountDownLatch connectedSemaphore = new CountDownLatch(1);
@@ -33,12 +33,12 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
     }
 
     public static void main(String[] args) {
-        for(int i=0; i < THREAD_NUM; i++){
-            final int threadId = i+1;
-            new Thread(){
+        for(int i = 0; i < THREAD_NUM; i++) {
+            final int threadId = i + 1;
+            new Thread() {
                 @Override
                 public void run() {
-                    try{
+                    try {
                         ZookeeperOptimizedDistributedLock dc = new ZookeeperOptimizedDistributedLock(threadId);
                         dc.createConnection(CONNECTION_STRING, SESSION_TIMEOUT);
                         //GROUP_PATH不存在的话，由一个线程创建即可；
@@ -46,13 +46,14 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
                             dc.createPath(GROUP_PATH, "该节点由线程" + threadId + "创建", true);
                         }
                         dc.getLock();
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         LOG.error("【第"+threadId+"个线程】 抛出的异常：");
                         e.printStackTrace();
                     }
                 }
             }.start();
         }
+
         try {
             threadSemaphore.await();
             LOG.info("所有线程运行结束!");
@@ -79,7 +80,8 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
      * @param data 初始数据内容
      * @return
      */
-    public boolean createPath( String path, String data, boolean needWatch) throws KeeperException, InterruptedException {
+    public boolean createPath( String path, String data, boolean needWatch)
+                throws KeeperException, InterruptedException {
         if(zk.exists(path, needWatch)==null){
             LOG.info( LOG_PREFIX_OF_THREAD + "节点创建成功, Path: "
                     + this.zk.create( path,
@@ -88,25 +90,30 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
                     CreateMode.PERSISTENT )
                     + ", content: " + data );
         }
+
         return true;
     }
+
     /**
      * 创建ZK连接
      * @param connectString  ZK服务器地址列表
      * @param sessionTimeout Session超时时间
      */
-    public void createConnection( String connectString, int sessionTimeout ) throws IOException, InterruptedException {
+    public void createConnection( String connectString, int sessionTimeout )
+                throws IOException, InterruptedException {
             zk = new ZooKeeper( connectString, sessionTimeout, this);
             connectedSemaphore.await();
     }
+
     /**
      * 获取锁成功
     */
     public void getLockSuccess() throws KeeperException, InterruptedException {
-        if(zk.exists(this.selfPath,false) == null){
+        if (zk.exists(this.selfPath,false) == null) {
             LOG.error(LOG_PREFIX_OF_THREAD+"本节点已不在了...");
             return;
         }
+
         LOG.info(LOG_PREFIX_OF_THREAD + "获取锁成功，赶紧干活！");
         Thread.sleep(2000);
         LOG.info(LOG_PREFIX_OF_THREAD + "删除本节点："+selfPath);
@@ -114,6 +121,7 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
         releaseConnection();
         threadSemaphore.countDown();
     }
+
     /**
      * 关闭ZK连接
      */
@@ -123,8 +131,10 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
                 this.zk.close();
             } catch ( InterruptedException e ) {}
         }
+
         LOG.info(LOG_PREFIX_OF_THREAD + "释放连接");
     }
+
     /**
      * 检查自己是不是最小的节点
      * @return
@@ -132,7 +142,7 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
     public boolean checkMinPath() throws KeeperException, InterruptedException {
          List<String> subNodes = zk.getChildren(GROUP_PATH, false);
          Collections.sort(subNodes);
-         int index = subNodes.indexOf( selfPath.substring(GROUP_PATH.length()+1));
+         int index = subNodes.indexOf( selfPath.substring(GROUP_PATH.length() + 1));
          switch (index){
              case -1:{
                  LOG.error(LOG_PREFIX_OF_THREAD+"本节点已不在了..."+selfPath);
@@ -157,10 +167,9 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
                      }
                  }
              }
-                 
          }
-     
     }
+
     @Override
     public void process(WatchedEvent event) {
         if(event == null){
@@ -193,6 +202,3 @@ public class ZookeeperOptimizedDistributedLock implements Watcher{
         }
     }
 }
-
-
-
