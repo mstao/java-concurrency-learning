@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>pers.mingshan</groupId>
-  <artifactId>ZookeeperDistributeLock</artifactId>
+  <artifactId>Lock</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>ZookeeperDistributeLock</name>
+  <name>Lock</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -61,7 +61,7 @@
   </dependencies>
 
   <build>
-    <finalName>ZookeeperDistributeLock</finalName>
+    <finalName>Lock</finalName>
     <plugins>
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -73,5 +73,4 @@
     </plugin>
   </plugins>
   </build>
-
 </project>
