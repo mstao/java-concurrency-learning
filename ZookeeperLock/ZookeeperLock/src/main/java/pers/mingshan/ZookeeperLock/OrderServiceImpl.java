@@ -14,7 +14,7 @@ public class OrderServiceImpl implements Runnable {
     // 根据线程数初始化倒计数器
     private static CountDownLatch cdl = new CountDownLatch(NUM);
     // lock锁
-    private static final Lock lock = new ZookeeperDistributeLock();
+    private static final Lock lock = new ZookeeperImproveDistributeLock();
 
     public void createOrderCode() {
         String orderCode = null;

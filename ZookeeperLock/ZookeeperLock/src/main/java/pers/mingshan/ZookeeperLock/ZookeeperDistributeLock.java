@@ -11,7 +11,12 @@ import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 import org.apache.log4j.Logger;
 
 /**
- * 利用Zookeeper节点名称的唯一性进行加锁和释放锁操作
+ * 利用Zookeeper节点名称的唯一性进行加锁和释放锁操作。
+ * 利用znode名称唯一性进行加锁，所有客户端去竞争加锁，但只有一个会加锁
+ * 成功， 其他客户端需要等待加锁成功的客户端去释放锁，释放锁操作则是删除该节点，
+ * 同时通知所有watch这个节点的客户端，其他的客户端再竞争加锁。
+ * 由于释放锁会通知所有watch该节点的客户端，所以会出现羊群效应，
+ * 造成资源浪费。
  * @author mingshan
  *
  */
@@ -20,7 +25,7 @@ public class ZookeeperDistributeLock implements Lock {
     // Zookeeper IP和端口
     private static final String ZK_IP_PORT = "localhost:2181";
     // Node 的名称
-    private static final String Lock_NODE = "/lock";
+    private static final String LOCK_NODE = "/lockS";
     // 创建 Zookeeper 的客户端
     private ZkClient zkClient = new ZkClient(ZK_IP_PORT);
 
@@ -66,9 +71,9 @@ public class ZookeeperDistributeLock implements Lock {
         };
         
         // 执行订阅node节点的数据变化
-        zkClient.subscribeDataChanges(Lock_NODE, listener);
+        zkClient.subscribeDataChanges(LOCK_NODE, listener);
 
-        if (zkClient.exists(Lock_NODE)) {
+        if (zkClient.exists(LOCK_NODE)) {
             try{
                 cdl = new CountDownLatch(1);
                 cdl.await();
@@ -78,7 +83,7 @@ public class ZookeeperDistributeLock implements Lock {
         }
 
         // 取消订阅node节点的数据变化
-        zkClient.unsubscribeDataChanges(Lock_NODE, listener);
+        zkClient.unsubscribeDataChanges(LOCK_NODE, listener);
     }
 
     /**
@@ -88,7 +93,7 @@ public class ZookeeperDistributeLock implements Lock {
     @Override
     public boolean tryLock() {
         try {
-            zkClient.createPersistent(Lock_NODE);
+            zkClient.createPersistent(LOCK_NODE);
             return true;
         } catch (ZkNodeExistsException e) {
             logger.error("加锁失败 -- reason -" + e.getMessage());
@@ -101,7 +106,7 @@ public class ZookeeperDistributeLock implements Lock {
      */
     @Override
     public void unlock() {
-        zkClient.delete(Lock_NODE);
+        zkClient.delete(LOCK_NODE);
     }
 
     @Override
