@@ -1,4 +1,4 @@
-package pers.mingshan.ZookeeperLock;
+package pers.mingshan.zookeeperlock;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pers.mingshan.ZookeeperLock;
+package pers.mingshan.zookeeperlock;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

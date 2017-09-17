@@ -1,4 +1,4 @@
-package pers.mingshan.ZookeeperLock;
+package pers.mingshan.zookeeperlock;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

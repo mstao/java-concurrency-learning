@@ -1,4 +1,4 @@
-package pers.mingshan.ZookeeperLock;
+package pers.mingshan.zookeeperlock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
