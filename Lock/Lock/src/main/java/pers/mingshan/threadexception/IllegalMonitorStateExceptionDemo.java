@@ -1,4 +1,4 @@
-package pers.mingshan.thread;
+package pers.mingshan.threadexception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
