@@ -40,8 +40,8 @@ public class ReentrantLockTryLockDemo implements Runnable{
     }
 
     public static void main(String[] args) {
+        ReentrantLockDemo demo = new ReentrantLockDemo();
         for (int i = 0; i < NUM; i++) {
-            ReentrantLockDemo demo = new ReentrantLockDemo();
             Thread thread = new Thread(demo);
             thread.start();
         }

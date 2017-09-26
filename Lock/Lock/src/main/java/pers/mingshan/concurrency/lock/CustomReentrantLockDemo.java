@@ -36,8 +36,8 @@ public class CustomReentrantLockDemo {
     }
 
     public static void main(String[] args) {
+        CustomReentrantLockDemo demo = new CustomReentrantLockDemo();
         for (int i = 0; i < 5; i++) {
-            CustomReentrantLockDemo demo = new CustomReentrantLockDemo();
             demo.work();
         }
     }

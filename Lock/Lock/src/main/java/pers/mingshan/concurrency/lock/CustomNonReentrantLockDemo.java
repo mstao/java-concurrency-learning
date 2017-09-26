@@ -30,8 +30,8 @@ public class CustomNonReentrantLockDemo {
     }
 
     public static void main(String[] args) {
+        CustomNonReentrantLockDemo demo = new CustomNonReentrantLockDemo();
         for (int i = 0; i < 5; i++) {
-            CustomNonReentrantLockDemo demo = new CustomNonReentrantLockDemo();
             demo.work();
         }
     }
