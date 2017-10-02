@@ -44,8 +44,9 @@ public class OrderServiceImpl implements Runnable {
     }
 
     public static void main(String[] args) {
+        OrderServiceImpl service = new OrderServiceImpl();
         for (int i = 0; i < NUM; i++) {
-            new Thread(new OrderServiceImpl()).start();
+            new Thread(service).start();
             // 每初始化一个线程， 计数器减一
             cdl.countDown();
         }

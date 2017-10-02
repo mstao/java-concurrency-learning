@@ -17,11 +17,4 @@ public class OrderCodeGenerator {
         sdf.format(date);
         return sdf.format(date) + ++i;
     }
-
-    public static void main(String[] args) {
-        OrderCodeGenerator generator = new OrderCodeGenerator();
-        for (int i = 0; i < 5; i++) {
-            System.out.println(generator.getOrderCode());
-        }
-    }
 }

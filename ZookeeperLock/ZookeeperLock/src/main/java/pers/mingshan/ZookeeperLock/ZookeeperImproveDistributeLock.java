@@ -99,7 +99,6 @@ public class ZookeeperImproveDistributeLock implements Lock{
         // 获取所有的临时顺序节点，并进行排序
         List<String> allESNodes = zkClient.getChildren(LOCK_ROOT_NODE);
         Collections.sort(allESNodes);
-        logger.info("0  ————> "+ allESNodes.get(0));
         // 判断当前节点是否为最小节点
         if (this.selfPath.equals(LOCK_ROOT_NODE + "/" + allESNodes.get(0))) {
             // 如果当前结点为最小节点，说明当前可以加锁
