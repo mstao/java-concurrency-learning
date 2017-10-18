@@ -1,2 +1,2 @@
-# java-concurrent-learn
+# java-concurrency-learning
 Learn java concurrecy.
