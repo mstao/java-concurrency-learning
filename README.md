@@ -1,4 +1,4 @@
 # java-concurrency-learning
 Learn java concurrecy.
-## 博文系列
+## A series of articles
 https://mstao.github.io/categories/Java/JUC/
