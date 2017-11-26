@@ -60,5 +60,6 @@ public class CountdownLatchTest {
         }
 
         service.shutdown();
+        System.out.println("main---------------------------");
     }
 }
