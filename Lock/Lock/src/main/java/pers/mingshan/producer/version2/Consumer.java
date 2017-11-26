@@ -21,8 +21,8 @@ public class Consumer implements Runnable {
                     break;
                 PCData data = null;
 
+                Test.lock.lock();
                 try {
-                    Test.lock.lock();
                     if (queue.size() == 0){
                         Test.NOT_EMPTY.await();
                     }

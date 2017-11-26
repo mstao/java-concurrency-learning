@@ -23,8 +23,9 @@ public class Producer2 implements Runnable {
                 System.out.println(Thread.currentThread().getId() + " 生产了：" + temp);
                 PCData data = new PCData();
                 data.set(temp);
+
+                Test.lock.lock();
                 try {
-                    Test.lock.lock();
                     if (queue.size() >= length) {
                         Test.NOT_FULL.wait();
                     }
