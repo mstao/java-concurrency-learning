@@ -1,4 +1,4 @@
-package pers.mingshan.producer.BlockingQueue;
+package pers.mingshan.queue;
 
 import java.text.MessageFormat;
 import java.util.Random;
@@ -13,29 +13,28 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class Consumer implements Runnable {
-    private BlockingQueue queue;
+    private BlockingQueue<PCData> queue;
     private static final int SLEEPTIME = 1000;
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
-    
-    public Consumer(BlockingQueue queue) {
+
+    public Consumer(BlockingQueue<PCData> queue) {
         this.queue = queue;
     }
 
     @Override
     public void run() {
-        logger.info("start Producer id --> " + Thread.currentThread().getId());
+        logger.info("start Consumner id --> " + Thread.currentThread().getId());
         Random r = new Random();
-        try{
-            while(true){
+        try {
+            while(true) {
                 PCData data = (PCData) queue.take();
-                if(data != null)
-                {
+                if (data != null) {
                     int re = data.getData() * data.getData();
                     logger.info(MessageFormat.format("{0}*{1}={2}", data.getData(),data.getData(),re));
                     Thread.sleep(r.nextInt(SLEEPTIME));
                 }
             }
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
         }

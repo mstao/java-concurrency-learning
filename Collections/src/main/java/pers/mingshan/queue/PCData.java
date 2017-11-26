@@ -1,4 +1,4 @@
-package pers.mingshan.producer.BlockingQueue;
+package pers.mingshan.queue;
 
 public class PCData {
     private final int intData;

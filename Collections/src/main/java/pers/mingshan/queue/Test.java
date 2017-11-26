@@ -1,4 +1,4 @@
-package pers.mingshan.producer.BlockingQueue;
+package pers.mingshan.queue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;

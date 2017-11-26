@@ -9,14 +9,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Test {
     public static ReentrantLock lock = new ReentrantLock();
-    public static Condition empty = lock.newCondition();
-    public static Condition full = lock.newCondition();
+    public static Condition NOT_EMPTY = lock.newCondition();
+    public static Condition NOT_FULL = lock.newCondition();
     public static void main(String[] args) {
         List<PCData> queue = new ArrayList<PCData>();
         int length = 10;
-        Producer p1 = new Producer(queue,length);
-        Producer p2 = new Producer(queue,length);
-        Producer p3 = new Producer(queue,length);
+        Producer2 p1 = new Producer2(queue,length);
+        Producer2 p2 = new Producer2(queue,length);
+        Producer2 p3 = new Producer2(queue,length);
         Consumer c1 = new Consumer(queue);
         Consumer c2 = new Consumer(queue);
         Consumer c3 = new Consumer(queue);

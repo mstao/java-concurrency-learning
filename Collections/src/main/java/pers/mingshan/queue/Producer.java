@@ -1,4 +1,4 @@
-package pers.mingshan.producer.BlockingQueue;
+package pers.mingshan.queue;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
@@ -24,7 +24,6 @@ public class Producer implements Runnable {
         this.queue = queue;
     }
 
-    
     @Override
     public void run() {
         PCData data = null;
