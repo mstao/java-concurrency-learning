@@ -39,7 +39,6 @@ public class Producer2 implements Runnable {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
-
         }
     }
 }

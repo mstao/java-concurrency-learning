@@ -45,3 +45,7 @@
 - getPhase()：获取当前phase周期数。如果Phaser已经中断，则返回负值。
 - getRegisteredParties()：获取已经注册的parties个数。
 - getUnarrivedParties()：获取尚未到达的parties个数。
+
+## Exchanger 常用方法
+- exchange(V x)： 等待另一个线程到达此交换点（除非当前线程被中断），然后将给定的对象传送给该线程，并接收该线程的对象
+- exchange(V x, long timeout, TimeUnit unit)：等待另一个线程到达此交换点（除非当前线程被中断，或者超出了指定的等待时间），然后将给定的对象传送给该线程，同时接收该线程的对象。
