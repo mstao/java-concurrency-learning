@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class LockInterruptiblyDemo {
-    private static final Logger logger = LoggerFactory.getLogger(ReentrantLockDemo.class);
+    private static final Logger logger = LoggerFactory.getLogger(LockInterruptiblyDemo.class);
     private Lock lock = new ReentrantLock();
 
     public static void main(String[] args) {

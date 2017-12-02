@@ -1,4 +1,4 @@
-package pers.mingshan.queue;
+package pers.mingshan.queue.consumerproducer;
 
 import java.text.MessageFormat;
 import java.util.Random;

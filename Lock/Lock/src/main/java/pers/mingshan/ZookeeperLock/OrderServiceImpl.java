@@ -6,7 +6,6 @@ import java.util.concurrent.locks.Lock;
 import org.apache.log4j.Logger;
 
 public class OrderServiceImpl implements Runnable {
-    
     private static OrderCodeGenerator generator = new OrderCodeGenerator();
     // 同时并发的线程数
     private static final int NUM = 10;

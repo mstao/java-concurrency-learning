@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ReentrantLockDemo implements Runnable {
-    private static final Logger logger = LoggerFactory.getLogger(ReentrantLockDemo.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReentrantLockTryLockDemo.class);
     private static Lock lock = new ReentrantLock();
     private static final int NUM = 5;
 

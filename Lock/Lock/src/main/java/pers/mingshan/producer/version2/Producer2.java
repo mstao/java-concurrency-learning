@@ -6,7 +6,7 @@ import java.util.Random;
 public class Producer2 implements Runnable {
     private List<PCData> queue;
     private int length;
-    
+
     public Producer2(List<PCData> queue, int length) {
         this.queue = queue;
         this.length = length;

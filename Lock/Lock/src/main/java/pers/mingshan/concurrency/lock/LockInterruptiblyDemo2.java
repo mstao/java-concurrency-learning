@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LockInterruptiblyDemo2 implements Runnable {
-    private static final Logger logger = LoggerFactory.getLogger(ReentrantLockDemo.class);
+    private static final Logger logger = LoggerFactory.getLogger(LockInterruptiblyDemo2.class);
     private static Lock lock = new ReentrantLock();
 
     @Override

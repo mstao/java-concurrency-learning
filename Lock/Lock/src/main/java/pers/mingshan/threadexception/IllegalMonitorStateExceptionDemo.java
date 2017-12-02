@@ -52,7 +52,7 @@ import pers.mingshan.concurrency.lock.ReentrantLockDemo;
  *
  */
 public class IllegalMonitorStateExceptionDemo extends Thread {
-    private static final Logger logger = LoggerFactory.getLogger(ReentrantLockDemo.class);
+    private static final Logger logger = LoggerFactory.getLogger(IllegalMonitorStateExceptionDemo.class);
     private Calculator calculator;
 
     public IllegalMonitorStateExceptionDemo(Calculator calculator) {

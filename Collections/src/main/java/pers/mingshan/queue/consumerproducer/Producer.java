@@ -1,4 +1,4 @@
-package pers.mingshan.queue;
+package pers.mingshan.queue.consumerproducer;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
@@ -19,7 +19,7 @@ public class Producer implements Runnable {
     private static AtomicInteger count = new AtomicInteger();
     private static final int SLEEPTIME = 1000;
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
-    
+
     public Producer(BlockingQueue<PCData> queue) {
         this.queue = queue;
     }

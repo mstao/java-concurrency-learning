@@ -3,7 +3,7 @@ package pers.mingshan.concurrency.lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class ReacWriteLockForCacheDemo {
+public class ReadWriteLockForCacheDemo {
     private Object data = null;
     private volatile boolean cacheValid;
     private final ReadWriteLock rwl = new ReentrantReadWriteLock();

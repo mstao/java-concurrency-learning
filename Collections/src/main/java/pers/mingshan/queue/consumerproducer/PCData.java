@@ -1,4 +1,4 @@
-package pers.mingshan.queue;
+package pers.mingshan.queue.consumerproducer;
 
 public class PCData {
     private final int intData;
