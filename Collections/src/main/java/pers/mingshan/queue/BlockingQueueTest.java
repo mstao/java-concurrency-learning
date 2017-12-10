@@ -12,6 +12,8 @@ import java.util.concurrent.LinkedTransferQueue;
  *   <li>offer: 添加元素。成功时返回 true，如果当前没有可用的空间，则返回 false，不会抛异常，可以设置等待时间</li>
  *   <li>take: 获取并移除此队列的头部。没有元素时，一直阻塞等待。</li>
  *   <li>poll: 获取并移除此队列的头部。可以设置等待时间。</li>
+ *   <li>remove: 移除并返回队列头部的元素， 如果队列为空，则抛出一个NoSuchElementException异常</li>
+ *   <li>element: 返回队列头部的元素， 如果队列为空，则抛出一个NoSuchElementException异常</li>
  * </ul>
  * 
  * BlockingQueue的实现类
@@ -33,6 +35,7 @@ import java.util.concurrent.LinkedTransferQueue;
 public class BlockingQueueTest {
 
     public static void main(String[] args) {
-        BlockingQueue queue = new LinkedTransferQueue<String>();
+        
+        BlockingQueue<String> queue = new LinkedTransferQueue<String>();
     }
 }
