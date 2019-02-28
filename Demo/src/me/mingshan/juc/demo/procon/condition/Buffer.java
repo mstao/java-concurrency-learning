@@ -30,7 +30,7 @@ public class Buffer {
     public void put() throws InterruptedException {
         lock.lock();
         try {
-            if (queue.size() == size) {
+            while (queue.size() == size) {
                 System.out.println("[Put] Current thread " + Thread.currentThread().getName() + " is waiting");
                 NOT_FULL.await();
             }
@@ -38,7 +38,7 @@ public class Buffer {
             queue.add("1");
             System.out.println("[Put] Current thread " + Thread.currentThread().getName()
                     + " add 1 item, current count: " + queue.size());
-            NOT_EMPTY.signalAll();
+            NOT_EMPTY.signal();
         } finally {
             lock.unlock();
         }
@@ -47,7 +47,7 @@ public class Buffer {
     public void take() throws InterruptedException {
         lock.lock();
         try {
-            if (queue.size() == 0){
+            while (queue.size() == 0) {
                 System.out.println("[Take] Current thread " + Thread.currentThread().getName() + " is waiting");
                 NOT_EMPTY.await();
             }
