@@ -44,8 +44,8 @@ public class Buffer {
     }
 
     public void take() throws InterruptedException {
+        lock.lock();
         try {
-            lock.lock();
             if (queue.size() == 0){
                 System.out.println("[Take] Current thread " + Thread.currentThread().getName() + " is waiting");
                 NOT_EMPTY.await();
