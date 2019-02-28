@@ -36,7 +36,8 @@ public class Buffer {
             }
 
             queue.add("1");
-            System.out.println("[Put] Current thread " + Thread.currentThread().getName() + " add 1 item, current count: " + queue.size());
+            System.out.println("[Put] Current thread " + Thread.currentThread().getName()
+                    + " add 1 item, current count: " + queue.size());
             NOT_EMPTY.signalAll();
         } finally {
             lock.unlock();
@@ -54,7 +55,8 @@ public class Buffer {
             System.out.println("size = " + queue.size());
 
             queue.remove(queue.size() - 1);
-            System.out.println("[Take] Current thread " + Thread.currentThread().getName() + " remove 1 item, current count: " + queue.size());
+            System.out.println("[Take] Current thread " + Thread.currentThread().getName()
+                    + " remove 1 item, current count: " + queue.size());
             NOT_FULL.signal();
         } finally {
             lock.unlock();
