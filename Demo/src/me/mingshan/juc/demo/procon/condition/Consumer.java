@@ -1,5 +1,8 @@
-package me.mingshan.juc.demo.procon.sync;
+package me.mingshan.juc.demo.procon.condition;
 
+/**
+ * @author mingshan
+ */
 public class Consumer implements Runnable {
     private Buffer buffer;
 
@@ -11,11 +14,12 @@ public class Consumer implements Runnable {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(1000);
                 buffer.take();
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
     }
 }

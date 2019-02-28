@@ -1,10 +1,10 @@
 package me.mingshan.juc.demo.procon.sync;
 
 public class Producer implements Runnable {
-    private Resource resource;
+    private Buffer buffer;
 
-    public Producer(Resource resource) {
-        this.resource = resource;
+    public Producer(Buffer buffer) {
+        this.buffer = buffer;
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Producer implements Runnable {
         while (true) {
             try {
                 Thread.sleep(1000);
-                resource.add();
+                buffer.put();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
