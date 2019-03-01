@@ -12,11 +12,11 @@ public class Buffer {
     private ArrayList<String> queue;
     private int size;
 
-    private static Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
     // 读线程条件
-    public static Condition NOT_EMPTY = lock.newCondition();
+    private final Condition notEmpty = lock.newCondition();
     // 写线程条件
-    public static Condition NOT_FULL = lock.newCondition();
+    private final Condition notNull = lock.newCondition();
 
     public Buffer() {
         this(10);
@@ -32,13 +32,13 @@ public class Buffer {
         try {
             while (queue.size() == size) {
                 System.out.println("[Put] Current thread " + Thread.currentThread().getName() + " is waiting");
-                NOT_FULL.await();
+                notNull.await();
             }
 
             queue.add("1");
             System.out.println("[Put] Current thread " + Thread.currentThread().getName()
                     + " add 1 item, current count: " + queue.size());
-            NOT_EMPTY.signal();
+            notEmpty.signal();
         } finally {
             lock.unlock();
         }
@@ -49,7 +49,7 @@ public class Buffer {
         try {
             while (queue.size() == 0) {
                 System.out.println("[Take] Current thread " + Thread.currentThread().getName() + " is waiting");
-                NOT_EMPTY.await();
+                notEmpty.await();
             }
 
             System.out.println("size = " + queue.size());
@@ -57,7 +57,7 @@ public class Buffer {
             queue.remove(queue.size() - 1);
             System.out.println("[Take] Current thread " + Thread.currentThread().getName()
                     + " remove 1 item, current count: " + queue.size());
-            NOT_FULL.signal();
+            notNull.signal();
         } finally {
             lock.unlock();
         }
