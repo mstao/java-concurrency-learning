@@ -1,4 +1,4 @@
-package me.mingshan.juc.demo.procon.blockingqueue;
+package me.mingshan.demo.procon.blockingqueue;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

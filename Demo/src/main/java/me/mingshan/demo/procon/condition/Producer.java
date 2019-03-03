@@ -1,5 +1,8 @@
-package me.mingshan.juc.demo.procon.sync;
+package me.mingshan.demo.procon.condition;
 
+/**
+ * @author mingshan
+ */
 public class Producer implements Runnable {
     private Buffer buffer;
 
@@ -9,10 +12,10 @@ public class Producer implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (true){
             try {
-                Thread.sleep(1000);
                 buffer.put();
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 Thread.currentThread().interrupt();

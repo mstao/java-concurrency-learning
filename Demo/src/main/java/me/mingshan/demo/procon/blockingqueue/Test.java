@@ -1,8 +1,10 @@
-
-package me.mingshan.juc.demo.procon.sync;
+package me.mingshan.demo.procon.blockingqueue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author mingshan
+ */
 public class Test {
     private static final AtomicInteger mCount = new AtomicInteger(1);
 

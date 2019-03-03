@@ -1,4 +1,4 @@
-package me.mingshan.juc.demo.procon.sync;
+package me.mingshan.demo.procon.sync;
 
 
 /**

@@ -1,4 +1,4 @@
-package me.mingshan.juc.demo.procon.condition;
+package me.mingshan.demo.procon.condition;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
